@@ -88,28 +88,28 @@
     "href": "weekly-notes/week-01-notes.html",
     "title": "Week 1 Notes - Course Introduction",
     "section": "",
-    "text": "[List main concepts from lecture]\n[Technical skills covered]"
+    "text": "An overview of Git + GitHub\nQuarto basics\nAn overview of R\ntidyverse and dplyr"
   },
   {
     "objectID": "weekly-notes/week-01-notes.html#key-concepts-learned",
     "href": "weekly-notes/week-01-notes.html#key-concepts-learned",
     "title": "Week 1 Notes - Course Introduction",
     "section": "",
-    "text": "[List main concepts from lecture]\n[Technical skills covered]"
+    "text": "An overview of Git + GitHub\nQuarto basics\nAn overview of R\ntidyverse and dplyr"
   },
   {
     "objectID": "weekly-notes/week-01-notes.html#coding-techniques",
     "href": "weekly-notes/week-01-notes.html#coding-techniques",
     "title": "Week 1 Notes - Course Introduction",
     "section": "Coding Techniques",
-    "text": "Coding Techniques\n\n[New R functions or approaches]\n[Quarto features learned]"
+    "text": "Coding Techniques\n\nWhy we use tidyverse (tibbles vs dataframes)\nA review of basic data manipulation using dplyr in R (select, filter, mutate, summarize, groupby)\nQuarto and how to generate good looking reports using markdown"
   },
   {
     "objectID": "weekly-notes/week-01-notes.html#questions-challenges",
     "href": "weekly-notes/week-01-notes.html#questions-challenges",
     "title": "Week 1 Notes - Course Introduction",
     "section": "Questions & Challenges",
-    "text": "Questions & Challenges\n\n[What I didn’t fully understand]\n[Areas needing more practice]"
+    "text": "Questions & Challenges\n\nNo major challenges this week."
   },
   {
     "objectID": "weekly-notes/week-01-notes.html#connections-to-policy",
@@ -123,7 +123,7 @@
     "href": "weekly-notes/week-01-notes.html#reflection",
     "title": "Week 1 Notes - Course Introduction",
     "section": "Reflection",
-    "text": "Reflection\n\n[What was most interesting]\n[How I’ll apply this knowledge]"
+    "text": "Reflection\n\nI hadn’t used Quarto so it was cool to see how the code could be deployed using GitHub Pages."
   },
   {
     "objectID": "index.html",
