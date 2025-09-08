@@ -15,8 +15,10 @@ Advanced spatial analysis and data science for urban planning and public policy.
 - **Final Project:** Capstone modeling challenge
 
 ## About Me
-[Students will customize this section]
+I recently moved to Philadelphia to pursue my Master of Urban Spatial Analytics. Prior to this, I spent most of my life in Columbus, OH where I graduated with a Computer Science & Engineering degree from The Ohio State University, and spent time as a software engineer for JPMorgan Chase. My goal by pursuing this masters program is to shift my career into being able to do spatial data science for public benefit, particularly around housing and transportation access issues.
+
+Outside of my academic and professional pursuits, I love cooking and trying new restaurants, exploring both urban and natural spaces, and spending time with friends/family.
 
 ## Contact
-- Email: [your.email@upenn.edu]
-- GitHub: [@your-username]
+- Email: kakumanu@upenn.edu
+- GitHub: @kakumanus
