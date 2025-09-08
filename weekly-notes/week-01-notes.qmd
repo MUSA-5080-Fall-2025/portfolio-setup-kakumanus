@@ -4,20 +4,21 @@ date: "2025-09-08"
 ---
 
 ## Key Concepts Learned
-- [List main concepts from lecture]
-- [Technical skills covered]
+- An overview of Git + GitHub
+- Quarto basics
+- An overview of R
+- tidyverse and dplyr
 
 ## Coding Techniques
-- [New R functions or approaches]
-- [Quarto features learned]
+- Why we use tidyverse (tibbles vs dataframes)
+- A review of basic data manipulation using dplyr in R (select, filter, mutate, summarize, groupby)
+- Quarto and how to generate good looking reports using markdown
 
 ## Questions & Challenges
-- [What I didn't fully understand]
-- [Areas needing more practice]
+- No major challenges this week.
 
 ## Connections to Policy
 - [How this week's content applies to real policy work]
 
 ## Reflection
-- [What was most interesting]
-- [How I'll apply this knowledge]
+- I hadn't used Quarto so it was cool to see how the code could be deployed using GitHub Pages.
