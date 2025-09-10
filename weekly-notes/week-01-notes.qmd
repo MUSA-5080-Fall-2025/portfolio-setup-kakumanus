@@ -18,7 +18,8 @@ date: "2025-09-08"
 - No major challenges this week.
 
 ## Connections to Policy
-- [How this week's content applies to real policy work]
+- Prof. Delmelle mentioned how the course, as opposed to the statistical analysis class, is focused on prediction.
+- In addition, public sector data science has very different goals than the private sector. Tradeoffs exist, and we're not trying to simply optimize profit.
 
 ## Reflection
 - I hadn't used Quarto so it was cool to see how the code could be deployed using GitHub Pages.
