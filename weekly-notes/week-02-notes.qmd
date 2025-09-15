@@ -1,19 +1,55 @@
 ---
-title: "Week 1 Notes - Course Introduction"
-date: "2025-09-08"
+title: "Week 2 Notes"
+date: "2025-09-15"
 ---
 
-## Key Concepts Learned
-- 
+## Key Concepts Learned + Notes
+- Algorithms
+  - High level, a set of rules or instructions for solving a problem or completing a task.
+- Algorithmic Decision Making in the Government
+  - Can be used to assist or replace human decision makers (mitigating biases that may exist in a human only process).
+  - Can use historical data providing Inputs("features", "predictors", "independent variables") to determine Outputs("labels", "outcome", "dependent variables").
+  - Data has trade-offs! Data can be inaccurate, subject to biases itself, etc.
+- Data collection is a long running practice in gov't (civic registration, census, admin records, operations research)
+  - Now, there is an increase in official and accidental (things that can be collected from sources like social media ) data.
+  - There is a shift from historical analysis to prediction.
+- IMPORTANT: Data Analytics is Subjective!
+  - Data cleaning, coding/classification, collection, interpretation, model variables. All require human choices that embody human values and biases.
+  - Especially data proxies/variables that can rely on historically biased data.
+- Census and ACS Data:
+  - Foundational in understanding community demographics, allocating govt resources, etc.
+  - Census is 10 years and sent to everyone, 9 basic questions, constitutional requirement, determines political representation.
+  - American Community Survey (ACS) sent to ~3% of households annually, with more detailed questions (income, education, employment, housing costs).
+    - ACS has 1-year estimates (areas > 65k people) and 5-year estimates (all areas with census tracts). 5-year estimates are the most reliable and based on the largest sample.
+  - Hierarchy of Census Data:
+    ```
+    Nation
+    ├── Regions  
+    ├── States
+    │   ├── Counties
+    │   │   ├── Census Tracts (1,500-8,000 people)
+    │   │   │   ├── Block Groups (600-3,000 people)  
+    │   │   │   │   └── Blocks (≈85 people, Decennial only)
+    ```
+  - Most policy analysis happens at County, Census, Block (although Blocks have big margins of error (MOE))
+- Census Data in R (see below)
 
-## Coding Techniques
-- 
+## Coding Techniques/Technical Notes
+- tidycensus
+  - Rather than downloading csv files from the Census website, we will use the tidycensus R package to programatically access this data! Allows us to get the latest data and with automatic geographic boundaries.
+  - Tables contain estimates (recall, ACS is based on a sample) and MOEs
+  - Always report MOEs
+- TIGER/Line Files
+  - Shapefiles (geographic boundaries) for census tracts, counties, states.
+- Historical Data Sources
+  - NHGIS, Longitudinal Tract DB
+  - We need this because boundaries change!
 
 ## Questions & Challenges
-- 
+- N/A
 
 ## Connections to Policy
-- 
+- Noted above.
 
 ## Reflection
-- 
+- N/A

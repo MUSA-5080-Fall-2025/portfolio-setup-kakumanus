@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-09-08">
+<meta name="dcterms.date" content="2025-09-15">
 
-<title>Week 1 Notes - Course Introduction – Sujan Kakumanu - MUSA 5080 Portfolio</title>
+<title>Week 2 Notes – Sujan Kakumanu - MUSA 5080 Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,6 +111,17 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../labs/lab0/scripts/lab0_template.html">
+ <span class="dropdown-text">Lab 0</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -127,11 +138,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#key-concepts-learned" id="toc-key-concepts-learned" class="nav-link active" data-scroll-target="#key-concepts-learned">## Key Concepts Learned</a></li>
-  <li><a href="#coding-techniques" id="toc-coding-techniques" class="nav-link" data-scroll-target="#coding-techniques">## Coding Techniques</a></li>
-  <li><a href="#questions-challenges" id="toc-questions-challenges" class="nav-link" data-scroll-target="#questions-challenges">## Questions &amp; Challenges</a></li>
-  <li><a href="#connections-to-policy" id="toc-connections-to-policy" class="nav-link" data-scroll-target="#connections-to-policy">## Connections to Policy</a></li>
-  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">## Reflection</a></li>
+  <li><a href="#key-concepts-learned-notes" id="toc-key-concepts-learned-notes" class="nav-link active" data-scroll-target="#key-concepts-learned-notes">Key Concepts Learned + Notes</a></li>
+  <li><a href="#coding-techniquestechnical-notes" id="toc-coding-techniquestechnical-notes" class="nav-link" data-scroll-target="#coding-techniquestechnical-notes">Coding Techniques/Technical Notes</a></li>
+  <li><a href="#questions-challenges" id="toc-questions-challenges" class="nav-link" data-scroll-target="#questions-challenges">Questions &amp; Challenges</a></li>
+  <li><a href="#connections-to-policy" id="toc-connections-to-policy" class="nav-link" data-scroll-target="#connections-to-policy">Connections to Policy</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
   </ul>
 </nav>
     </div>
@@ -140,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1 Notes - Course Introduction</h1>
+<h1 class="title">Week 2 Notes</h1>
 </div>
 
 
@@ -151,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 8, 2025</p>
+      <p class="date">September 15, 2025</p>
     </div>
   </div>
   
@@ -163,20 +174,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="key-concepts-learned" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts-learned">## Key Concepts Learned</h2>
+<section id="key-concepts-learned-notes" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts-learned-notes">Key Concepts Learned + Notes</h2>
+<ul>
+<li>Algorithms
+<ul>
+<li>High level, a set of rules or instructions for solving a problem or completing a task.</li>
+</ul></li>
+<li>Algorithmic Decision Making in the Government
+<ul>
+<li>Can be used to assist or replace human decision makers (mitigating biases that may exist in a human only process).</li>
+<li>Can use historical data providing Inputs(“features”, “predictors”, “independent variables”) to determine Outputs(“labels”, “outcome”, “dependent variables”).</li>
+<li>Data has trade-offs! Data can be inaccurate, subject to biases itself, etc.</li>
+</ul></li>
+<li>Data collection is a long running practice in gov’t (civic registration, census, admin records, operations research)
+<ul>
+<li>Now, there is an increase in official and accidental (things that can be collected from sources like social media ) data.</li>
+<li>There is a shift from historical analysis to prediction.</li>
+</ul></li>
+<li>IMPORTANT: Data Analytics is Subjective!
+<ul>
+<li>Data cleaning, coding/classification, collection, interpretation, model variables. All require human choices that embody human values and biases.</li>
+<li>Especially data proxies/variables that can rely on historically biased data.</li>
+</ul></li>
+<li>Census and ACS Data:
+<ul>
+<li><p>Foundational in understanding community demographics, allocating govt resources, etc.</p></li>
+<li><p>Census is 10 years and sent to everyone, 9 basic questions, constitutional requirement, determines political representation.</p></li>
+<li><p>American Community Survey (ACS) sent to ~3% of households annually, with more detailed questions (income, education, employment, housing costs).</p>
+<ul>
+<li>ACS has 1-year estimates (areas &gt; 65k people) and 5-year estimates (all areas with census tracts). 5-year estimates are the most reliable and based on the largest sample.</li>
+</ul></li>
+<li><p>Hierarchy of Census Data:</p>
+<pre><code>Nation
+├── Regions  
+├── States
+│   ├── Counties
+│   │   ├── Census Tracts (1,500-8,000 people)
+│   │   │   ├── Block Groups (600-3,000 people)  
+│   │   │   │   └── Blocks (≈85 people, Decennial only)</code></pre></li>
+<li><p>Most policy analysis happens at County, Census, Block (although Blocks have big margins of error (MOE))</p></li>
+</ul></li>
+<li>Census Data in R (see below)</li>
+</ul>
 </section>
-<section id="coding-techniques" class="level2">
-<h2 class="anchored" data-anchor-id="coding-techniques">## Coding Techniques</h2>
+<section id="coding-techniquestechnical-notes" class="level2">
+<h2 class="anchored" data-anchor-id="coding-techniquestechnical-notes">Coding Techniques/Technical Notes</h2>
+<ul>
+<li>tidycensus
+<ul>
+<li>Rather than downloading csv files from the Census website, we will use the tidycensus R package to programatically access this data! Allows us to get the latest data and with automatic geographic boundaries.</li>
+<li>Tables contain estimates (recall, ACS is based on a sample) and MOEs</li>
+<li>Always report MOEs</li>
+</ul></li>
+<li>TIGER/Line Files
+<ul>
+<li>Shapefiles (geographic boundaries) for census tracts, counties, states.</li>
+</ul></li>
+<li>Historical Data Sources
+<ul>
+<li>NHGIS, Longitudinal Tract DB</li>
+<li>We need this because boundaries change!</li>
+</ul></li>
+</ul>
 </section>
 <section id="questions-challenges" class="level2">
-<h2 class="anchored" data-anchor-id="questions-challenges">## Questions &amp; Challenges</h2>
+<h2 class="anchored" data-anchor-id="questions-challenges">Questions &amp; Challenges</h2>
+<ul>
+<li>N/A</li>
+</ul>
 </section>
 <section id="connections-to-policy" class="level2">
-<h2 class="anchored" data-anchor-id="connections-to-policy">## Connections to Policy</h2>
+<h2 class="anchored" data-anchor-id="connections-to-policy">Connections to Policy</h2>
+<ul>
+<li>Noted above.</li>
+</ul>
 </section>
 <section id="reflection" class="level2">
-<h2 class="anchored" data-anchor-id="reflection">## Reflection</h2>
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<ul>
+<li>N/A</li>
+</ul>
 
 
 </section>
