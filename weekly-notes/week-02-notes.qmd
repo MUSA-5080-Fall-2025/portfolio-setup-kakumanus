@@ -19,7 +19,7 @@ date: "2025-09-15"
 - Census and ACS Data:
   - Foundational in understanding community demographics, allocating govt resources, etc.
   - Census is 10 years and sent to everyone, 9 basic questions, constitutional requirement, determines political representation.
-  - American Community Survey (ACS) sent to ~3% of households annually, with more detailed questions (income, education, employment, housing costs).
+  - American Community Survey (ACS) sent to ~3% of households annually, with more detailed questions (income, education, employment, housing costs). Done at Block Group level.
     - ACS has 1-year estimates (areas > 65k people) and 5-year estimates (all areas with census tracts). 5-year estimates are the most reliable and based on the largest sample.
   - Hierarchy of Census Data:
     ```

@@ -14,10 +14,16 @@ website:
             text: Week 1
           - href: weekly-notes/week-02-notes.qmd
             text: Week 2
+          - href: weekly-notes/week-03-notes.qmd
+            text: Week 3
       - text: Labs
         menu:
           - href: labs/lab0/scripts/lab0_template.qmd
             text: Lab 0
+      - text: Assignments
+        menu:
+          - href: assignments/assignment_1/assignment1.qmd
+            text: "Assignment 1: Census Data Exploration"
             
 format:
   html:

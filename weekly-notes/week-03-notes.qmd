@@ -1,0 +1,35 @@
+---
+title: "Week 3 Notes"
+date: "2025-09-22"
+---
+
+## Key Concepts Learned + Notes
+- Importance of Data Visualization and Communication
+  - Example of Anscombe's Quartet: Charts with the same summary statistics, but the way the data is represented would suggest otherwise.
+  - Poor policy decisions can result from misunderstood data. Recall the Jurjevich et al. study that found 72% of Portland Census tracts having unreliable child poverty estimates. This uncertainty was never communicated by planners.
+  - A note that block groups, since they're smaller, can have high margins of error! Imagine (an example) just two people getting surveyed in a block group.
+- Grammar of Graphics Principles (ggplot2 philosophy)
+  - *Data*
+  - *Aesthetics*: aes(); connection between data variables and visual properties of the plot
+  - *Geometries*: geom_points(); how to display the data - points, lines, etc.
+  - *Visual*: Adding scales, themes, facets, annotations, etc.
+- Exploratory Data Analysis (EDA)
+  - What does the data looking like? (distributions, missing values)
+  - What patterns exists? (relationships, clusters, trends)
+  - What's unusual? (outliers, anomalies, data quality issues)
+  - What questions does this raise? (hypotheses)
+  - Reliability and data quality?
+
+## Coding Techniques/Technical Notes
+- ggplot2
+  - ggplot(data = yourdata) + aes(x = variable1, y = variable2) + geom_something() + additional_layers()
+  - Again, aesthetics are used to map data to visual properties. You shouldn't be setting themes here (for example), but if you want the color to change based on a variable, you can do it here!
+
+## Questions & Challenges
+- N/A
+
+## Connections to Policy
+- 
+
+## Reflection
+- 
