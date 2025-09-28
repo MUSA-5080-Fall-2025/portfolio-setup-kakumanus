@@ -10,20 +10,20 @@ website:
         text: Home
       - text: Weekly Notes
         menu:
-          - href: weekly-notes/week-01-notes.qmd
+          - href: weekly-notes/week-01-notes.html
             text: Week 1
-          - href: weekly-notes/week-02-notes.qmd
+          - href: weekly-notes/week-02-notes.html
             text: Week 2
-          - href: weekly-notes/week-03-notes.qmd
+          - href: weekly-notes/week-03-notes.html
             text: Week 3
-      - text: Labs
-        menu:
-          - href: labs/lab0/scripts/lab0_template.qmd
-            text: Lab 0
       - text: Assignments
         menu:
-          - href: assignments/assignment_1/assignment1.qmd
-            text: "Assignment 1: Census Data Exploration"
+          - href: assignments/assignment_1/assignment1.html
+            text: Assignment 1: Census Data Exploration
+      - text: Labs
+        menu:
+          - href: labs/lab0/scripts/lab0_template.html
+            text: Lab 0
             
 format:
   html:
