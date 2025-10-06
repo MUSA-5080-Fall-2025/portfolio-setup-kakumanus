@@ -19,7 +19,7 @@ website:
       - text: Assignments
         menu:
           - href: assignments/assignment_1/assignment1.html
-            text: Assignment 1: Census Data Exploration
+            text: Assignment 1 - Census Data Exploration
       - text: Labs
         menu:
           - href: labs/lab0/scripts/lab0_template.html

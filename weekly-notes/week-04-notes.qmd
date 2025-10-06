@@ -1,0 +1,50 @@
+---
+title: "Week 4 Notes"
+date: "2025-09-29"
+---
+
+## Key Concepts Learned + Notes
+- This week's class is the last piece of the puzzle before we can start building models: doing GIS/spatial visualizations in R.
+- Remember: Spatial-autocorrelation violates independence assumptions! Also, training data may under-represent certain areas.
+- Vector Data Model (one simplified geometric rep. of the real world)
+  - Points, Lines, Polygons
+  - Each of the above will have a geometry (shape + location), and attributes (data about that feature)
+- Coordinate Reference Systems (CRS)
+  - Since the Earth is round, and maps are flat, we need projections! They can't preserve area, distance, and angles though.
+  - Already, we abstract the Earth's shape. The Earth is a geoid (imperfect surface), and we approximate it using an ellipsoid. There are multiple ellipsoids that can be used to approximate and some can be better depending on where you live.
+  - Then we must tie the ellipsoid to the real Earth. This is the datum. Ex: Clarke's 1866 Ellipsoid, centered on Meade's Ranch, KS.
+  - Then we can put down a Lat/Long grid. Ex: The North American Datum of 1927 (NAD27) was formed from Clarke's work.
+  - NAD83 is another 3D model of the earth that was mapped and uses GRS80.
+  - WGS84 is what GPS uses.
+  - All of the above standards are **Geographic Coordinate Systems (GCS)**.
+  - These must then be projected onto a computer screen/flat surface! Recall example of cylindrical projections and the corresponding distortions (Mercator is an example). Can remember how projections mess with things with SADD (Shape, Area, Distance, Direction)
+  - We then use **Project Coordinate System** to provide a localized coordinate system built on a regular non-distorted grid (as opposed to lat/long whihc are in degrees with respect to center of the earth).
+    - One is UTM, dividing the earth into 60 zones, each of 6 degrees of long. Each zone is projected individually, and is referenced using the Zone (because coordinates are defined from the bottom-left origin of each zone). No negatives, and in meters (with some false northing or easting value added).
+    - Another is State Plane (in the US, used in PA for example). Each state has its own projection, reducing distortions at the state level. Similar system as UTM where there's an origin corner, but the distance can be feet or meters.
+  - GCS (lat/long coordinates, decimal degrees, good for global datasets + web mapping, bad for area/distance)
+  - PCS ()
+  - See below for programmatic considerations
+
+## Coding Techniques/Technical Notes
+- sf (simple features) Package
+  - Allows you to read in multiple types of spatial data (Shapefiles, GeoJSON, KML/KMZ, DB connections, etc.) as an sf (similar to how we read csv data as df or tibbles)
+- tigris Package
+  - Contains shape data for the census (as opposed to tidycensus which contains attribute data)
+  - st_drop_geometry: will drop the geometry column from your table, so you just have attribute data.
+- You can use ggplot(<your_map_data>) to map using + geom_sf()
+- You can filter your data using st_filter(), and add the argument of .predicate = relationshop, where relationship can be something like st_touches, st_intersects, etc.
+- Also important st_ functions, like st_dissolve!
+- Checking and Setting CRS
+  - use st_crs(data) to check the current CRS
+  - *iff missing*, st_set_crs(data, crs_id).
+    - IFF!!!
+  - transform CRS using data_transformed <- data %>% st_transform(crs = id) 
+
+## Questions & Challenges
+- 
+
+## Connections to Policy
+- 
+
+## Reflection
+- 

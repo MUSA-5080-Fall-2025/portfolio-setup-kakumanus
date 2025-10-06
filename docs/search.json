@@ -558,5 +558,47 @@
     "title": "Assignment 1: Census Data Quality for Policy Decisions",
     "section": "Submission Checklist",
     "text": "Submission Checklist\nBefore submitting your portfolio link on Canvas:\n\nAll code chunks run without errors\nAll “[Fill this in]” prompts have been completed\nTables are properly formatted and readable\nExecutive summary addresses all four required components\nPortfolio navigation includes this assignment\nCensus API key is properly set\nDocument renders correctly to HTML\n\nRemember: Submit your portfolio URL on Canvas, not the file itself. Your assignment should be accessible at your-portfolio-url/assignments/assignment_1/your_file_name.html"
+  },
+  {
+    "objectID": "weekly-notes/week-04-notes.html",
+    "href": "weekly-notes/week-04-notes.html",
+    "title": "Week 4 Notes",
+    "section": "",
+    "text": "This week’s class is the last piece of the puzzle before we can start building models: doing GIS/spatial visualizations in R.\nRemember: Spatial-autocorrelation violates independence assumptions! Also, training data may under-represent certain areas.\nVector Data Model (one simplified geometric rep. of the real world)\n\nPoints, Lines, Polygons\nEach of the above will have a geometry (shape + location), and attributes (data about that feature)\n\nCoordinate Reference Systems (CRS)\n\nSince the Earth is round, and maps are flat, we need projections! They can’t preserve area, distance, and angles though.\nAlready, we abstract the Earth’s shape. The Earth is a geoid (imperfect surface), and we approximate it using an ellipsoid. There are multiple ellipsoids that can be used to approximate and some can be better depending on where you live.\nThen we must tie the ellipsoid to the real Earth. This is the datum. Ex: Clarke’s 1866 Ellipsoid, centered on Meade’s Ranch, KS.\nThen we can put down a Lat/Long grid. Ex: The North American Datum of 1927 (NAD27) was formed from Clarke’s work.\nNAD83 is another 3D model of the earth that was mapped and uses GRS80.\nWGS84 is what GPS uses.\nAll of the above standards are Geographic Coordinate Systems (GCS).\nThese must then be projected onto a computer screen/flat surface! Recall example of cylindrical projections and the corresponding distortions (Mercator is an example). Can remember how projections mess with things with SADD (Shape, Area, Distance, Direction)\nWe then use Project Coordinate System to provide a localized coordinate system built on a regular non-distorted grid (as opposed to lat/long whihc are in degrees with respect to center of the earth).\n\nOne is UTM, dividing the earth into 60 zones, each of 6 degrees of long. Each zone is projected individually, and is referenced using the Zone (because coordinates are defined from the bottom-left origin of each zone). No negatives, and in meters (with some false northing or easting value added).\nAnother is State Plane (in the US, used in PA for example). Each state has its own projection, reducing distortions at the state level. Similar system as UTM where there’s an origin corner, but the distance can be feet or meters.\n\nGCS (lat/long coordinates, decimal degrees, good for global datasets + web mapping, bad for area/distance)\nPCS ()\nSee below for programmatic considerations"
+  },
+  {
+    "objectID": "weekly-notes/week-04-notes.html#key-concepts-learned-notes",
+    "href": "weekly-notes/week-04-notes.html#key-concepts-learned-notes",
+    "title": "Week 4 Notes",
+    "section": "",
+    "text": "This week’s class is the last piece of the puzzle before we can start building models: doing GIS/spatial visualizations in R.\nRemember: Spatial-autocorrelation violates independence assumptions! Also, training data may under-represent certain areas.\nVector Data Model (one simplified geometric rep. of the real world)\n\nPoints, Lines, Polygons\nEach of the above will have a geometry (shape + location), and attributes (data about that feature)\n\nCoordinate Reference Systems (CRS)\n\nSince the Earth is round, and maps are flat, we need projections! They can’t preserve area, distance, and angles though.\nAlready, we abstract the Earth’s shape. The Earth is a geoid (imperfect surface), and we approximate it using an ellipsoid. There are multiple ellipsoids that can be used to approximate and some can be better depending on where you live.\nThen we must tie the ellipsoid to the real Earth. This is the datum. Ex: Clarke’s 1866 Ellipsoid, centered on Meade’s Ranch, KS.\nThen we can put down a Lat/Long grid. Ex: The North American Datum of 1927 (NAD27) was formed from Clarke’s work.\nNAD83 is another 3D model of the earth that was mapped and uses GRS80.\nWGS84 is what GPS uses.\nAll of the above standards are Geographic Coordinate Systems (GCS).\nThese must then be projected onto a computer screen/flat surface! Recall example of cylindrical projections and the corresponding distortions (Mercator is an example). Can remember how projections mess with things with SADD (Shape, Area, Distance, Direction)\nWe then use Project Coordinate System to provide a localized coordinate system built on a regular non-distorted grid (as opposed to lat/long whihc are in degrees with respect to center of the earth).\n\nOne is UTM, dividing the earth into 60 zones, each of 6 degrees of long. Each zone is projected individually, and is referenced using the Zone (because coordinates are defined from the bottom-left origin of each zone). No negatives, and in meters (with some false northing or easting value added).\nAnother is State Plane (in the US, used in PA for example). Each state has its own projection, reducing distortions at the state level. Similar system as UTM where there’s an origin corner, but the distance can be feet or meters.\n\nGCS (lat/long coordinates, decimal degrees, good for global datasets + web mapping, bad for area/distance)\nPCS ()\nSee below for programmatic considerations"
+  },
+  {
+    "objectID": "weekly-notes/week-04-notes.html#coding-techniquestechnical-notes",
+    "href": "weekly-notes/week-04-notes.html#coding-techniquestechnical-notes",
+    "title": "Week 4 Notes",
+    "section": "Coding Techniques/Technical Notes",
+    "text": "Coding Techniques/Technical Notes\n\nsf (simple features) Package\n\nAllows you to read in multiple types of spatial data (Shapefiles, GeoJSON, KML/KMZ, DB connections, etc.) as an sf (similar to how we read csv data as df or tibbles)\n\ntigris Package\n\nContains shape data for the census (as opposed to tidycensus which contains attribute data)\nst_drop_geometry: will drop the geometry column from your table, so you just have attribute data.\n\nYou can use ggplot() to map using + geom_sf()\nYou can filter your data using st_filter(), and add the argument of .predicate = relationshop, where relationship can be something like st_touches, st_intersects, etc.\nAlso important st_ functions, like st_dissolve!\nChecking and Setting CRS\n\nuse st_crs(data) to check the current CRS\niff missing, st_set_crs(data, crs_id).\n\nIFF!!!\n\ntransform CRS using data_transformed &lt;- data %&gt;% st_transform(crs = id)"
+  },
+  {
+    "objectID": "weekly-notes/week-04-notes.html#questions-challenges",
+    "href": "weekly-notes/week-04-notes.html#questions-challenges",
+    "title": "Week 4 Notes",
+    "section": "## Questions & Challenges",
+    "text": "## Questions & Challenges"
+  },
+  {
+    "objectID": "weekly-notes/week-04-notes.html#connections-to-policy",
+    "href": "weekly-notes/week-04-notes.html#connections-to-policy",
+    "title": "Week 4 Notes",
+    "section": "## Connections to Policy",
+    "text": "## Connections to Policy"
+  },
+  {
+    "objectID": "weekly-notes/week-04-notes.html#reflection",
+    "href": "weekly-notes/week-04-notes.html#reflection",
+    "title": "Week 4 Notes",
+    "section": "## Reflection",
+    "text": "## Reflection"
   }
 ]
