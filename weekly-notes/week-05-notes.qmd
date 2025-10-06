@@ -1,0 +1,57 @@
+---
+title: "Week 5 Notes"
+date: "2025-10-06"
+---
+
+## Key Concepts Learned + Notes
+- Statistical Learning
+  - Generally, we observe data, believe there's some relationship, and then use some approaches for estimating that relationship. Recall linear regression and other techniques from stats class.
+  - Defining a fn (f) for Y as a function of some predictors X with some random error (epsilon).
+  - Two approaches:
+    - Parametric: Makes assumption about functional form (ex: linear), reduces problem to estimate a few parameters, easier to interpet <- Our focus!
+    - Non-parametric: Doesn't assume a specific form, more flexible, requires more data to interpret.
+
+- Parametric Approach: Linear Regression - estimating the beta coefficients using sample data.
+  - We will look at Ordinary Least Squares (OLS)
+  - Works really well and is a foundation of more complex models! But, it also makes assumptions that need to be checked and can be susceptible to outliers.
+  - Usually don't care about β₀ (the intercept) because it won't make sense (recall income when population is 0 example). β₁ and other slope coefficients are useful! We test their significance.
+    - We will set the null hypothesis to β₁ = 0 (i.e there is no change in y w.r.t x). We have our estimated β₁. We will test if we can get the estimate by chaneg if the null hypothesis is true.
+    - t-stat: How many std errors away from 0? If absolute val of the t-stat is high, we have more confidence that our tested relationship is real...
+    - p-value: Probability of seeing our estimate if null hypothesis is true. Small p -> reject null hypothesis and conclude a rel. exists.
+- In inferential stats, we use $R^2$ to determine how well a model is.
+  - Ex: $R^2$ = 0.208 in the income population example (~21% of variation in income is explained by population)
+    - Is this good? For inference, shows population matters but that other factors exist. For prediction, it's moderate. 
+  - A problem: Overfitting in Regression. Probably can't generalize to other samples of data. High $R^2$ doesn't mean good predictions!
+- Train/test split on data to evaluate the performance of model the withheld data.
+  - RMSE (Root Mean Squared Estimate)
+    - Useful metric when evaluating how good the prediction is. Ex: an RMSE of 9536 could mean our predictions are off by ~9500 on average.
+- Cross-Validation: Multiple train/test splits.
+  - k-fold cross-validation: Recall from stats class. You treat the k fold as test set, iterate through all the folds and repeat.
+- Checking Assumptions! Recall that regression relies on these, else coeffs may be biases, std errs can be wrong, and predictions can be unreliable.
+  - Assumption 1: Linearity. Check the residual plot! You shouldn't see any pattern.
+  - Assumption 2: Constant Variance. You don't want heteroscedasticity (variance changing across X). Can check the scatter plot or plot of residuals.
+    - Can also test more formally: Breusch-Pagan (bptest from library(lmtest))
+      - A very low (< 0.05) p-value is evidence of heteroscedasticity.
+  - Assumption 3: Normality of Residuals. Less critical for point predictors but important for confidence intervals.
+    - Test using Q-Q plot of residuals. Should lay along the line.
+  - Assumption 4: Multicollinearity. Predictors shouldn't be too correlated. Coeffs become unstable and hard to interpret.
+    - VIF (variance inflation factor) > 10 is a big concern!
+  - Assumption 5: No influential outliers! Only those with high leverage AND large residuals are an issue.
+    - Check using Cook's Distance > 4/n = potentially influential. High leverage + large residual will "pull" the regression line.
+    - Don't just throw the point away.
+- Improving the Model:
+  - Add more predictors/features.
+  - Log Transformations (if rel is curved, try transforming it). Log models show percentage relationships!
+  - Categorical Variables (feature engineering/creating new dummy variables)
+
+## Coding Techniques/Technical Notes
+- 
+
+## Questions & Challenges
+- 
+
+## Connections to Policy
+- 
+
+## Reflection
+- 

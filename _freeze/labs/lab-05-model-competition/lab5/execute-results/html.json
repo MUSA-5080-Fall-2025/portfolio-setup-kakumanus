@@ -1,0 +1,17 @@
+{
+  "hash": "1894c49fb31f1b256ff2ef3d78a02a8c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Lab 5 - Model Building Competition\"\nsubtitle: \"Your First Data Analysis\"\nauthor: \"Sujan Kakumanu\"\ndate: \"2025-10-06\"\nformat: \n  html:\n    code-fold: false\n    toc: true\n    toc-location: left\n    theme: cosmo\nexecute:\n  warning: false\n  message: false\n---\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(caret)\n\n# 10-fold cross-validation\ntrain_control <- trainControl(method = \"cv\", number = 10)\n\ncv_model <- train(home_valueE ~ median_incomeE,\n                  data = challenge_data,\n                  method = \"lm\",\n                  trControl = train_control)\n\ncv_model$results\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD    MAESD\n1      TRUE 23164.79 0.8450294 17813.94 9260.733  0.1289697 6239.799\n```\n\n\n:::\n\n```{.r .cell-code}\ncv_model <- train(home_valueE ~ median_rentE,\n                  data = challenge_data,\n                  method = \"lm\",\n                  trControl = train_control)\n\ncv_model$results\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD    MAESD\n1      TRUE 27115.71 0.8127802 22232.92 9173.039  0.1277109 7321.037\n```\n\n\n:::\n\n```{.r .cell-code}\ncv_model <- train(home_valueE ~ log(percent_collegeE),\n                  data = challenge_data,\n                  method = \"lm\",\n                  trControl = train_control)\n\ncv_model$results\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  intercept     RMSE  Rsquared      MAE  RMSESD RsquaredSD    MAESD\n1      TRUE 53083.21 0.5353948 43827.74 17168.8   0.262354 14650.44\n```\n\n\n:::\n\n```{.r .cell-code}\ncv_model <- train(home_valueE ~ median_incomeE + median_rentE + log(percent_collegeE),\n                  data = challenge_data,\n                  method = \"lm\",\n                  trControl = train_control)\ncv_model$results\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD    MAESD\n1      TRUE 20299.88 0.8934533 15887.33 6976.052 0.08245509 6099.722\n```\n\n\n:::\n:::\n\n",
+    "supporting": [
+      "lab5_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -16,6 +16,10 @@ website:
             text: Week 2
           - href: weekly-notes/week-03-notes.html
             text: Week 3
+          - href: weekly-notes/week-04-notes.html
+            text: Week 4
+          - href: weekly-notes/week-05-notes.html
+            text: Week 5
       - text: Assignments
         menu:
           - href: assignments/assignment_1/assignment1.html
@@ -24,7 +28,8 @@ website:
         menu:
           - href: labs/lab0/scripts/lab0_template.html
             text: Lab 0
-            
+          - href: labs/lab-05-model-competition/lab5.html
+            text: Lab 5            
 format:
   html:
     theme: cosmo

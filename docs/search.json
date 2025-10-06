@@ -600,5 +600,54 @@
     "title": "Week 4 Notes",
     "section": "## Reflection",
     "text": "## Reflection"
+  },
+  {
+    "objectID": "weekly-notes/week-05-notes.html",
+    "href": "weekly-notes/week-05-notes.html",
+    "title": "Week 5 Notes",
+    "section": "",
+    "text": "Statistical Learning\n\nGenerally, we observe data, believe there’s some relationship, and then use some approaches for estimating that relationship. Recall linear regression and other techniques from stats class.\nDefining a fn (f) for Y as a function of some predictors X with some random error (epsilon).\nTwo approaches:\n\nParametric: Makes assumption about functional form (ex: linear), reduces problem to estimate a few parameters, easier to interpet &lt;- Our focus!\nNon-parametric: Doesn’t assume a specific form, more flexible, requires more data to interpret.\n\n\nParametric Approach: Linear Regression - estimating the beta coefficients using sample data.\n\nWe will look at Ordinary Least Squares (OLS)\nWorks really well and is a foundation of more complex models! But, it also makes assumptions that need to be checked and can be susceptible to outliers.\nUsually don’t care about β₀ (the intercept) because it won’t make sense (recall income when population is 0 example). β₁ and other slope coefficients are useful! We test their significance.\n\nWe will set the null hypothesis to β₁ = 0 (i.e there is no change in y w.r.t x). We have our estimated β₁. We will test if we can get the estimate by chaneg if the null hypothesis is true.\nt-stat: How many std errors away from 0? If absolute val of the t-stat is high, we have more confidence that our tested relationship is real…\np-value: Probability of seeing our estimate if null hypothesis is true. Small p -&gt; reject null hypothesis and conclude a rel. exists.\n\n\nIn inferential stats, we use \\(R^2\\) to determine how well a model is.\n\nEx: \\(R^2\\) = 0.208 in the income population example (~21% of variation in income is explained by population)\n\nIs this good? For inference, shows population matters but that other factors exist. For prediction, it’s moderate.\n\nA problem: Overfitting in Regression. Probably can’t generalize to other samples of data. High \\(R^2\\) doesn’t mean good predictions!\n\nTrain/test split on data to evaluate the performance of model the withheld data.\n\nRMSE (Root Mean Squared Estimate)\n\nUseful metric when evaluating how good the prediction is. Ex: an RMSE of 9536 could mean our predictions are off by ~9500 on average.\n\n\nCross-Validation: Multiple train/test splits.\n\nk-fold cross-validation: Recall from stats class. You treat the k fold as test set, iterate through all the folds and repeat.\n\nChecking Assumptions! Recall that regression relies on these, else coeffs may be biases, std errs can be wrong, and predictions can be unreliable.\n\nAssumption 1: Linearity. Check the residual plot! You shouldn’t see any pattern.\nAssumption 2: Constant Variance. You don’t want heteroscedasticity (variance changing across X). Can check the scatter plot or plot of residuals.\n\nCan also test more formally: Breusch-Pagan (bptest from library(lmtest))\n\nA very low (&lt; 0.05) p-value is evidence of heteroscedasticity.\n\n\nAssumption 3: Normality of Residuals. Less critical for point predictors but important for confidence intervals.\n\nTest using Q-Q plot of residuals. Should lay along the line.\n\nAssumption 4: Multicollinearity. Predictors shouldn’t be too correlated. Coeffs become unstable and hard to interpret.\n\nVIF (variance inflation factor) &gt; 10 is a big concern!\n\nAssumption 5: No influential outliers! Only those with high leverage AND large residuals are an issue.\n\nCheck using Cook’s Distance &gt; 4/n = potentially influential. High leverage + large residual will “pull” the regression line.\nDon’t just throw the point away.\n\n\nImproving the Model:\n\nAdd more predictors/features.\nLog Transformations (if rel is curved, try transforming it). Log models show percentage relationships!\nCategorical Variables (feature engineering/creating new dummy variables)"
+  },
+  {
+    "objectID": "weekly-notes/week-05-notes.html#key-concepts-learned-notes",
+    "href": "weekly-notes/week-05-notes.html#key-concepts-learned-notes",
+    "title": "Week 5 Notes",
+    "section": "",
+    "text": "Statistical Learning\n\nGenerally, we observe data, believe there’s some relationship, and then use some approaches for estimating that relationship. Recall linear regression and other techniques from stats class.\nDefining a fn (f) for Y as a function of some predictors X with some random error (epsilon).\nTwo approaches:\n\nParametric: Makes assumption about functional form (ex: linear), reduces problem to estimate a few parameters, easier to interpet &lt;- Our focus!\nNon-parametric: Doesn’t assume a specific form, more flexible, requires more data to interpret.\n\n\nParametric Approach: Linear Regression - estimating the beta coefficients using sample data.\n\nWe will look at Ordinary Least Squares (OLS)\nWorks really well and is a foundation of more complex models! But, it also makes assumptions that need to be checked and can be susceptible to outliers.\nUsually don’t care about β₀ (the intercept) because it won’t make sense (recall income when population is 0 example). β₁ and other slope coefficients are useful! We test their significance.\n\nWe will set the null hypothesis to β₁ = 0 (i.e there is no change in y w.r.t x). We have our estimated β₁. We will test if we can get the estimate by chaneg if the null hypothesis is true.\nt-stat: How many std errors away from 0? If absolute val of the t-stat is high, we have more confidence that our tested relationship is real…\np-value: Probability of seeing our estimate if null hypothesis is true. Small p -&gt; reject null hypothesis and conclude a rel. exists.\n\n\nIn inferential stats, we use \\(R^2\\) to determine how well a model is.\n\nEx: \\(R^2\\) = 0.208 in the income population example (~21% of variation in income is explained by population)\n\nIs this good? For inference, shows population matters but that other factors exist. For prediction, it’s moderate.\n\nA problem: Overfitting in Regression. Probably can’t generalize to other samples of data. High \\(R^2\\) doesn’t mean good predictions!\n\nTrain/test split on data to evaluate the performance of model the withheld data.\n\nRMSE (Root Mean Squared Estimate)\n\nUseful metric when evaluating how good the prediction is. Ex: an RMSE of 9536 could mean our predictions are off by ~9500 on average.\n\n\nCross-Validation: Multiple train/test splits.\n\nk-fold cross-validation: Recall from stats class. You treat the k fold as test set, iterate through all the folds and repeat.\n\nChecking Assumptions! Recall that regression relies on these, else coeffs may be biases, std errs can be wrong, and predictions can be unreliable.\n\nAssumption 1: Linearity. Check the residual plot! You shouldn’t see any pattern.\nAssumption 2: Constant Variance. You don’t want heteroscedasticity (variance changing across X). Can check the scatter plot or plot of residuals.\n\nCan also test more formally: Breusch-Pagan (bptest from library(lmtest))\n\nA very low (&lt; 0.05) p-value is evidence of heteroscedasticity.\n\n\nAssumption 3: Normality of Residuals. Less critical for point predictors but important for confidence intervals.\n\nTest using Q-Q plot of residuals. Should lay along the line.\n\nAssumption 4: Multicollinearity. Predictors shouldn’t be too correlated. Coeffs become unstable and hard to interpret.\n\nVIF (variance inflation factor) &gt; 10 is a big concern!\n\nAssumption 5: No influential outliers! Only those with high leverage AND large residuals are an issue.\n\nCheck using Cook’s Distance &gt; 4/n = potentially influential. High leverage + large residual will “pull” the regression line.\nDon’t just throw the point away.\n\n\nImproving the Model:\n\nAdd more predictors/features.\nLog Transformations (if rel is curved, try transforming it). Log models show percentage relationships!\nCategorical Variables (feature engineering/creating new dummy variables)"
+  },
+  {
+    "objectID": "weekly-notes/week-05-notes.html#coding-techniquestechnical-notes",
+    "href": "weekly-notes/week-05-notes.html#coding-techniquestechnical-notes",
+    "title": "Week 5 Notes",
+    "section": "## Coding Techniques/Technical Notes",
+    "text": "## Coding Techniques/Technical Notes"
+  },
+  {
+    "objectID": "weekly-notes/week-05-notes.html#questions-challenges",
+    "href": "weekly-notes/week-05-notes.html#questions-challenges",
+    "title": "Week 5 Notes",
+    "section": "## Questions & Challenges",
+    "text": "## Questions & Challenges"
+  },
+  {
+    "objectID": "weekly-notes/week-05-notes.html#connections-to-policy",
+    "href": "weekly-notes/week-05-notes.html#connections-to-policy",
+    "title": "Week 5 Notes",
+    "section": "## Connections to Policy",
+    "text": "## Connections to Policy"
+  },
+  {
+    "objectID": "weekly-notes/week-05-notes.html#reflection",
+    "href": "weekly-notes/week-05-notes.html#reflection",
+    "title": "Week 5 Notes",
+    "section": "## Reflection",
+    "text": "## Reflection"
+  },
+  {
+    "objectID": "labs/lab-05-model-competition/lab5.html",
+    "href": "labs/lab-05-model-competition/lab5.html",
+    "title": "Lab 5 - Model Building Competition",
+    "section": "",
+    "text": "library(caret)\n\n# 10-fold cross-validation\ntrain_control &lt;- trainControl(method = \"cv\", number = 10)\n\ncv_model &lt;- train(home_valueE ~ median_incomeE,\n                  data = challenge_data,\n                  method = \"lm\",\n                  trControl = train_control)\n\ncv_model$results\n\n  intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD    MAESD\n1      TRUE 23164.79 0.8450294 17813.94 9260.733  0.1289697 6239.799\n\ncv_model &lt;- train(home_valueE ~ median_rentE,\n                  data = challenge_data,\n                  method = \"lm\",\n                  trControl = train_control)\n\ncv_model$results\n\n  intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD    MAESD\n1      TRUE 27115.71 0.8127802 22232.92 9173.039  0.1277109 7321.037\n\ncv_model &lt;- train(home_valueE ~ log(percent_collegeE),\n                  data = challenge_data,\n                  method = \"lm\",\n                  trControl = train_control)\n\ncv_model$results\n\n  intercept     RMSE  Rsquared      MAE  RMSESD RsquaredSD    MAESD\n1      TRUE 53083.21 0.5353948 43827.74 17168.8   0.262354 14650.44\n\ncv_model &lt;- train(home_valueE ~ median_incomeE + median_rentE + log(percent_collegeE),\n                  data = challenge_data,\n                  method = \"lm\",\n                  trControl = train_control)\ncv_model$results\n\n  intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD    MAESD\n1      TRUE 20299.88 0.8934533 15887.33 6976.052 0.08245509 6099.722"
   }
 ]
