@@ -24,6 +24,9 @@ website:
         menu:
           - href: assignments/assignment_1/assignment1.html
             text: Assignment 1 - Census Data Exploration
+        menu:
+          - href: assignments/assignment_2/Kakumanu_Sujan_Assignment2.html
+            text: Assignment 2
       - text: Labs
         menu:
           - href: labs/lab0/scripts/lab0_template.html

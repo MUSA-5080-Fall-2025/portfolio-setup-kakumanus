@@ -57,7 +57,7 @@ library(tidycensus)
 library(knitr)
 
 # Set your Census API key
-census_api_key(Sys.getenv("6662138161177aabbe10805405e7b20b4dedb1f8"))
+census_api_key(Sys.getenv("MY_CENSUS_API_KEY"))
 
 # Choose your state for analysis - assign it to a variable called my_state
 my_state <- "OH"
