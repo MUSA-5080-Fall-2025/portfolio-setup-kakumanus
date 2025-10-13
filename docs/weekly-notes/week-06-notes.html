@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-06">
+<meta name="dcterms.date" content="2025-10-13">
 
-<title>Week 5 Notes – Sujan Kakumanu - MUSA 5080 Portfolio</title>
+<title>Week 6 Notes – Sujan Kakumanu - MUSA 5080 Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -202,7 +173,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#key-concepts-learned-notes" id="toc-key-concepts-learned-notes" class="nav-link active" data-scroll-target="#key-concepts-learned-notes">Key Concepts Learned + Notes</a></li>
+  <li><a href="#key-concepts-learned-notes" id="toc-key-concepts-learned-notes" class="nav-link active" data-scroll-target="#key-concepts-learned-notes">## Key Concepts Learned + Notes</a></li>
   <li><a href="#coding-techniquestechnical-notes" id="toc-coding-techniquestechnical-notes" class="nav-link" data-scroll-target="#coding-techniquestechnical-notes">## Coding Techniques/Technical Notes</a></li>
   <li><a href="#questions-challenges" id="toc-questions-challenges" class="nav-link" data-scroll-target="#questions-challenges">## Questions &amp; Challenges</a></li>
   <li><a href="#connections-to-policy" id="toc-connections-to-policy" class="nav-link" data-scroll-target="#connections-to-policy">## Connections to Policy</a></li>
@@ -215,7 +186,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 5 Notes</h1>
+<h1 class="title">Week 6 Notes</h1>
 </div>
 
 
@@ -226,7 +197,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 6, 2025</p>
+      <p class="date">October 13, 2025</p>
     </div>
   </div>
   
@@ -239,79 +210,7 @@ window.Quarto = {
 
 
 <section id="key-concepts-learned-notes" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts-learned-notes">Key Concepts Learned + Notes</h2>
-<ul>
-<li>Statistical Learning
-<ul>
-<li>Generally, we observe data, believe there’s some relationship, and then use some approaches for estimating that relationship. Recall linear regression and other techniques from stats class.</li>
-<li>Defining a fn (f) for Y as a function of some predictors X with some random error (epsilon).</li>
-<li>Two approaches:
-<ul>
-<li>Parametric: Makes assumption about functional form (ex: linear), reduces problem to estimate a few parameters, easier to interpet &lt;- Our focus!</li>
-<li>Non-parametric: Doesn’t assume a specific form, more flexible, requires more data to interpret.</li>
-</ul></li>
-</ul></li>
-<li>Parametric Approach: Linear Regression - estimating the beta coefficients using sample data.
-<ul>
-<li>We will look at Ordinary Least Squares (OLS)</li>
-<li>Works really well and is a foundation of more complex models! But, it also makes assumptions that need to be checked and can be susceptible to outliers.</li>
-<li>Usually don’t care about β₀ (the intercept) because it won’t make sense (recall income when population is 0 example). β₁ and other slope coefficients are useful! We test their significance.
-<ul>
-<li>We will set the null hypothesis to β₁ = 0 (i.e there is no change in y w.r.t x). We have our estimated β₁. We will test if we can get the estimate by chaneg if the null hypothesis is true.</li>
-<li>t-stat: How many std errors away from 0? If absolute val of the t-stat is high, we have more confidence that our tested relationship is real…</li>
-<li>p-value: Probability of seeing our estimate if null hypothesis is true. Small p -&gt; reject null hypothesis and conclude a rel. exists.</li>
-</ul></li>
-</ul></li>
-<li>In inferential stats, we use <span class="math inline">\(R^2\)</span> to determine how well a model is.
-<ul>
-<li>Ex: <span class="math inline">\(R^2\)</span> = 0.208 in the income population example (~21% of variation in income is explained by population)
-<ul>
-<li>Is this good? For inference, shows population matters but that other factors exist. For prediction, it’s moderate.</li>
-</ul></li>
-<li>A problem: Overfitting in Regression. Probably can’t generalize to other samples of data. High <span class="math inline">\(R^2\)</span> doesn’t mean good predictions!</li>
-</ul></li>
-<li>Train/test split on data to evaluate the performance of model the withheld data.
-<ul>
-<li>RMSE (Root Mean Squared Estimate)
-<ul>
-<li>Useful metric when evaluating how good the prediction is. Ex: an RMSE of 9536 could mean our predictions are off by ~9500 on average.</li>
-</ul></li>
-</ul></li>
-<li>Cross-Validation: Multiple train/test splits.
-<ul>
-<li>k-fold cross-validation: Recall from stats class. You treat the k fold as test set, iterate through all the folds and repeat.</li>
-</ul></li>
-<li>Checking Assumptions! Recall that regression relies on these, else coeffs may be biases, std errs can be wrong, and predictions can be unreliable.
-<ul>
-<li>Assumption 1: Linearity. Check the residual plot! You shouldn’t see any pattern.</li>
-<li>Assumption 2: Constant Variance. You don’t want heteroscedasticity (variance changing across X). Can check the scatter plot or plot of residuals.
-<ul>
-<li>Can also test more formally: Breusch-Pagan (bptest from library(lmtest))
-<ul>
-<li>A very low (&lt; 0.05) p-value is evidence of heteroscedasticity.</li>
-</ul></li>
-</ul></li>
-<li>Assumption 3: Normality of Residuals. Less critical for point predictors but important for confidence intervals.
-<ul>
-<li>Test using Q-Q plot of residuals. Should lay along the line.</li>
-</ul></li>
-<li>Assumption 4: Multicollinearity. Predictors shouldn’t be too correlated. Coeffs become unstable and hard to interpret.
-<ul>
-<li>VIF (variance inflation factor) &gt; 10 is a big concern!</li>
-</ul></li>
-<li>Assumption 5: No influential outliers! Only those with high leverage AND large residuals are an issue.
-<ul>
-<li>Check using Cook’s Distance &gt; 4/n = potentially influential. High leverage + large residual will “pull” the regression line.</li>
-<li>Don’t just throw the point away.</li>
-</ul></li>
-</ul></li>
-<li>Improving the Model:
-<ul>
-<li>Add more predictors/features.</li>
-<li>Log Transformations (if rel is curved, try transforming it). Log models show percentage relationships!</li>
-<li>Categorical Variables (feature engineering/creating new dummy variables)</li>
-</ul></li>
-</ul>
+<h2 class="anchored" data-anchor-id="key-concepts-learned-notes">## Key Concepts Learned + Notes</h2>
 </section>
 <section id="coding-techniquestechnical-notes" class="level2">
 <h2 class="anchored" data-anchor-id="coding-techniquestechnical-notes">## Coding Techniques/Technical Notes</h2>

@@ -20,11 +20,12 @@ website:
             text: Week 4
           - href: weekly-notes/week-05-notes.html
             text: Week 5
+          - href: weekly-notes/week-06-notes.html
+            text: Week 6
       - text: Assignments
         menu:
           - href: assignments/assignment_1/assignment1.html
             text: Assignment 1 - Census Data Exploration
-        menu:
           - href: assignments/assignment_2/Kakumanu_Sujan_Assignment2.html
             text: Assignment 2
       - text: Labs
