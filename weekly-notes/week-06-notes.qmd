@@ -4,10 +4,43 @@ date: "2025-10-13"
 ---
 
 ## Key Concepts Learned + Notes
-- 
+- Motivation for Spatial ML and Advanced Regression
+  - Recall a simple regression model for house value. A lot of the variation in house price is unexplained by just a few variables. Imagine a small house in a desirable neighborhood, a house with an extra bathroom, backyard, etc.
+- This is where categorical variables can come in handy (as opposed to continuous variables like sqft, med income, etc.) Neighborhoods can be a good spatial categorical variable. See st_as_sf in the technical notes below.
+  - When creating categorical vars, one will become a reference variables. Model interpretation is done wrt the reference! Ex, if the neighborhood Allston is picked a the reference variables for neighborhood, model interpretation would be "This neighborhood is MORE/LESS/SAME expensive than Allston". See levels() fn below.
+- Interaction
+  - No Interaction (var + var) suggests only the intercept of the line changing, not the slope (parallel lines). Imagine living area having the same impact on home value across neighborhoods.
+  - Interaction (var * var) suggests different slope and intercept.
+  - Interpret the interaction coeffs. Compare $R^2$ between the models.
+  - Don't use interaction if...
+    - small samples (need sufficient data for each group); overfitting (too many interactions make model unstable)
+- Polynomial Coefficients
+  - Imagine a theory proposing that house value wrt age is actually a u-shaped relationship.
+  - You can add Age as a squared term instead of a linear term and compare the impact of this transformation.
+- 3 Approaches to Spatial Features: Recall 1st Law of Geography...
+  - Buffer Aggregation (count or sum events within defined distance e.g 500ft)
+  - k-Nearest Neighbors (Ex: avg dist to closest 3 events)
+  - Distance to Specific Points (Ex: distance to downtown, nearest transit station, etc.)
+- Fixed Effect
+  - Recall the neighborhood categorical variable. That neighborhood captures so much information (school quality, park access, transportation, etc). We call that a fixed effect (this ex, a "neighborhood fixed effect")
+- Cross Validation with Categorical Vars
+  - Today, we focused on just k-fold CV with categorical
+  - You have to make sure that there's enough data in each category!!! Imagine a neighborhood with 1 house. n < 10 will likely cause CV problems...
+  - Should add vars and compare the model performance between each. Note that RMSE makes errors really large, so try to understand what could cause this. Ex: adding variables may improve specificity, but errors may still seem large. Could be because of small categories, outliers, etc.
+
 
 ## Coding Techniques/Technical Notes
-- 
+- st_as_sf
+  - Converting CSV data to Spatial Data (sf). The CSV may have a lat and lon, but needs a geometry.
+  - Key: You provide what crs the CSV is in! Having a lat lon column probably means it's WGS84 or NAD83.
+    - Note, WGS84 and NAD83 are similar. With our spatial analysis, being off a couple feet is probably fine so you can provide an educated guess as to what the crs is. This may not be OK in other fields.
+- as.factor(name)
+  - If you have some spatial data (neighborhoods for example), you can create variables using this
+- name = as.factor(name). It creates binary indicators for all neighborhoods.
+  - levels(data.sf$name) -> can check what the reference var is.
+- Then to create the model Ex: model_neighborhoods <- lm(SalePrice ~ LivingArea + name, 
+                          data = boston.sf)
+- I(var^2) when defining a model to add a polynomial coeff (in this case, a squared term)
 
 ## Questions & Challenges
 - 

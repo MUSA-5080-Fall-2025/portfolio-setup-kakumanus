@@ -1,0 +1,15 @@
+{
+  "hash": "b5f9f59cb838eff2f3d76401473a66ca",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Lab 6 - Model Building Competition\"\nsubtitle: \"Your First Data Analysis\"\nauthor: \"Sujan Kakumanu\"\ndate: \"2025-10-13\"\nformat: \n  html:\n    code-fold: false\n    toc: true\n    toc-location: left\n    theme: cosmo\nexecute:\n  warning: false\n  message: false\n---\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(caret)\n```\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

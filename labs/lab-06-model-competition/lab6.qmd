@@ -1,0 +1,52 @@
+---
+title: "Lab 6 - Model Building Competition"
+subtitle: "Your First Data Analysis"
+author: "Sujan Kakumanu"
+date: "2025-10-13"
+format: 
+  html:
+    code-fold: false
+    toc: true
+    toc-location: left
+    theme: cosmo
+execute:
+  warning: false
+  message: false
+---
+
+```{r setup}
+#| include: false
+options(scipen = 999)
+library(tidyverse)
+library(tidycensus)
+library(broom)
+library(scales)
+library(sf)
+
+boston <- read_csv("./data/boston.csv")
+boston.sf <- boston %>%
+  st_as_sf(coords = c("Longitude", "Latitude"), crs = 4326) %>%
+  st_transform('ESRI:102286')  # MA State Plane (feet)
+
+boston.sf <- boston.sf %>%
+  mutate(has_ac = case_when(R_AC != 'N' ~ 1, .default = 0)) 
+
+nhoods <- st_read("./data/BPDA_Neighborhood_Boundaries.geojson") %>%
+  st_transform('ESRI:102286')
+
+boston.sf <- boston.sf %>%
+  st_join(nhoods, join = st_intersects)
+
+model <- lm(SalePrice ~ has_ac * LivingArea, data = boston.sf)
+
+summary(model)
+
+```
+
+```{r}
+#| echo: true
+#| eval: true
+library(caret)
+
+
+```

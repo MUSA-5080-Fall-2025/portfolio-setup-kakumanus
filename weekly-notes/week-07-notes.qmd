@@ -1,0 +1,33 @@
+---
+title: "Week 7 Notes"
+date: "2025-10-20"
+---
+
+## Key Concepts Learned + Notes
+- Clustered Errors (Spatial Autocorrelation of Residuals)
+  - Recall the Tobler's 1st Law of Geography. This autocorrelation can occur for errors when evaluating models as well. A model generalized to a city may have + residuals in certain areas, and - residuals in others. If the model is good, we should see random scattering, not clustering of errors in space.
+- Moran's I
+  - Measuring spatial autocorrelation. Ranging between -1 (Perfect negative correlation - dispersion), 0 (Random spatial pattern), and 1 (Perfect positive correlation - clustering).
+  - At a high level, the formula calculates the difference of an observation from the mean, multiplied by the observation's neighbor from the mean. Summation of all of these pairs.
+- Defining Neighbor
+  - Contiguity (polygons that share a border; queen, rook), Distance (all w/in X distance; fixed distance), k-Nearest (closest k-points; adaptive distance)
+- Spatial Lag - average value of neighbors
+- In spatial stats, we learned about Spatial Lag/Spatial Error models. This is not going to be used in this class (focused on predictive models)
+  - Why? Simultaneity Problem (we need new house prices, but don't have them in a predictive model). OLS estimates are biased and inconsistent.
+    - Biased (expected value != true parameter). Inconsitent (doesn't converge to true value as n -> inf)
+  
+## Coding Techniques/Technical Notes
+- library(spdep)
+  - Creating the spatial lag.
+- knn2b (to create neearest neighbors)
+- nb2listw (provide the nearest neighbors to create a weights matrix - observation x observation with binary values)
+- moran.mc
+  
+## Questions & Challenges
+- 
+
+## Connections to Policy
+- 
+
+## Reflection
+- 

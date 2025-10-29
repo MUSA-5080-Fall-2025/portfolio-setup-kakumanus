@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -173,8 +202,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#key-concepts-learned-notes" id="toc-key-concepts-learned-notes" class="nav-link active" data-scroll-target="#key-concepts-learned-notes">## Key Concepts Learned + Notes</a></li>
-  <li><a href="#coding-techniquestechnical-notes" id="toc-coding-techniquestechnical-notes" class="nav-link" data-scroll-target="#coding-techniquestechnical-notes">## Coding Techniques/Technical Notes</a></li>
+  <li><a href="#key-concepts-learned-notes" id="toc-key-concepts-learned-notes" class="nav-link active" data-scroll-target="#key-concepts-learned-notes">Key Concepts Learned + Notes</a></li>
+  <li><a href="#coding-techniquestechnical-notes" id="toc-coding-techniquestechnical-notes" class="nav-link" data-scroll-target="#coding-techniquestechnical-notes">Coding Techniques/Technical Notes</a></li>
   <li><a href="#questions-challenges" id="toc-questions-challenges" class="nav-link" data-scroll-target="#questions-challenges">## Questions &amp; Challenges</a></li>
   <li><a href="#connections-to-policy" id="toc-connections-to-policy" class="nav-link" data-scroll-target="#connections-to-policy">## Connections to Policy</a></li>
   <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">## Reflection</a></li>
@@ -210,10 +239,71 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="key-concepts-learned-notes" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts-learned-notes">## Key Concepts Learned + Notes</h2>
+<h2 class="anchored" data-anchor-id="key-concepts-learned-notes">Key Concepts Learned + Notes</h2>
+<ul>
+<li>Motivation for Spatial ML and Advanced Regression
+<ul>
+<li>Recall a simple regression model for house value. A lot of the variation in house price is unexplained by just a few variables. Imagine a small house in a desirable neighborhood, a house with an extra bathroom, backyard, etc.</li>
+</ul></li>
+<li>This is where categorical variables can come in handy (as opposed to continuous variables like sqft, med income, etc.) Neighborhoods can be a good spatial categorical variable. See st_as_sf in the technical notes below.
+<ul>
+<li>When creating categorical vars, one will become a reference variables. Model interpretation is done wrt the reference! Ex, if the neighborhood Allston is picked a the reference variables for neighborhood, model interpretation would be “This neighborhood is MORE/LESS/SAME expensive than Allston”. See levels() fn below.</li>
+</ul></li>
+<li>Interaction
+<ul>
+<li>No Interaction (var + var) suggests only the intercept of the line changing, not the slope (parallel lines). Imagine living area having the same impact on home value across neighborhoods.</li>
+<li>Interaction (var * var) suggests different slope and intercept.</li>
+<li>Interpret the interaction coeffs. Compare <span class="math inline">\(R^2\)</span> between the models.</li>
+<li>Don’t use interaction if…
+<ul>
+<li>small samples (need sufficient data for each group); overfitting (too many interactions make model unstable)</li>
+</ul></li>
+</ul></li>
+<li>Polynomial Coefficients
+<ul>
+<li>Imagine a theory proposing that house value wrt age is actually a u-shaped relationship.</li>
+<li>You can add Age as a squared term instead of a linear term and compare the impact of this transformation.</li>
+</ul></li>
+<li>3 Approaches to Spatial Features: Recall 1st Law of Geography…
+<ul>
+<li>Buffer Aggregation (count or sum events within defined distance e.g 500ft)</li>
+<li>k-Nearest Neighbors (Ex: avg dist to closest 3 events)</li>
+<li>Distance to Specific Points (Ex: distance to downtown, nearest transit station, etc.)</li>
+</ul></li>
+<li>Fixed Effect
+<ul>
+<li>Recall the neighborhood categorical variable. That neighborhood captures so much information (school quality, park access, transportation, etc). We call that a fixed effect (this ex, a “neighborhood fixed effect”)</li>
+</ul></li>
+<li>Cross Validation with Categorical Vars
+<ul>
+<li>Today, we focused on just k-fold CV with categorical</li>
+<li>You have to make sure that there’s enough data in each category!!! Imagine a neighborhood with 1 house. n &lt; 10 will likely cause CV problems…</li>
+<li>Should add vars and compare the model performance between each. Note that RMSE makes errors really large, so try to understand what could cause this. Ex: adding variables may improve specificity, but errors may still seem large. Could be because of small categories, outliers, etc.</li>
+</ul></li>
+</ul>
 </section>
 <section id="coding-techniquestechnical-notes" class="level2">
-<h2 class="anchored" data-anchor-id="coding-techniquestechnical-notes">## Coding Techniques/Technical Notes</h2>
+<h2 class="anchored" data-anchor-id="coding-techniquestechnical-notes">Coding Techniques/Technical Notes</h2>
+<ul>
+<li>st_as_sf
+<ul>
+<li>Converting CSV data to Spatial Data (sf). The CSV may have a lat and lon, but needs a geometry.</li>
+<li>Key: You provide what crs the CSV is in! Having a lat lon column probably means it’s WGS84 or NAD83.
+<ul>
+<li>Note, WGS84 and NAD83 are similar. With our spatial analysis, being off a couple feet is probably fine so you can provide an educated guess as to what the crs is. This may not be OK in other fields.</li>
+</ul></li>
+</ul></li>
+<li>as.factor(name)
+<ul>
+<li>If you have some spatial data (neighborhoods for example), you can create variables using this</li>
+</ul></li>
+<li>name = as.factor(name). It creates binary indicators for all neighborhoods.
+<ul>
+<li>levels(data.sf$name) -&gt; can check what the reference var is.</li>
+</ul></li>
+<li>Then to create the model Ex: model_neighborhoods &lt;- lm(SalePrice ~ LivingArea + name, data = boston.sf)</li>
+<li>I(var^2) when defining a model to add a polynomial coeff (in this case, a squared term)</li>
+</ul>
 </section>
 <section id="questions-challenges" class="level2">
 <h2 class="anchored" data-anchor-id="questions-challenges">## Questions &amp; Challenges</h2>

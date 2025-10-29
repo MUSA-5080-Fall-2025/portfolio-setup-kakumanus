@@ -40,9 +40,9 @@ date: "2025-10-06"
     - Check using Cook's Distance > 4/n = potentially influential. High leverage + large residual will "pull" the regression line.
     - Don't just throw the point away.
 - Improving the Model:
-  - Add more predictors/features.
+  - Add more predictors/features. Can help with heteroscedasticity issues (i.e you have some variables that could account for increasing or decreasing variance across indep. vars).
+    - Ex: Categorical Variables (feature engineering/creating new dummy variables).
   - Log Transformations (if rel is curved, try transforming it). Log models show percentage relationships!
-  - Categorical Variables (feature engineering/creating new dummy variables)
 
 ## Coding Techniques/Technical Notes
 - 
