@@ -30,9 +30,9 @@ website:
             text: Assignment 1 - Census Data Exploration
           - href: assignments/assignment_2/Kakumanu_Sujan_Assignment2.html
             text: Assignment 2
-          - href: assignments/assignment_3/MUSA-5080-Midterm/midterm_script.html
+          - href: assignments/assignment_3/midterm_script.html
             text: Assignment 3 Technical Appendix (Group Project)
-          - href: assignments/assignment_3/MUSA-5080-Midterm/midterm_presentation.html
+          - href: assignments/assignment_3/midterm_presentation.html
             text: Assignment 3 Presentation (Group Project)
       - text: Labs
         menu:
