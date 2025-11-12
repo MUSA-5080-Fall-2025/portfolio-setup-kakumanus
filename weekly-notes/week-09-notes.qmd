@@ -1,0 +1,48 @@
+---
+title: "Week 9 Notes"
+date: "2025-11-03"
+---
+
+## Key Concepts Learned + Notes
+- Critical Analysis of Predictive Policing
+  - Dirty data
+  - "DIRTY DATA, BAD PREDICTIONS: HOW CIVIL RIGHTS VIOLATIONS IMPACT POLICE DATA, PREDICTIVE POLICING SYSTEMS, AND JUSTICE" - Richardson et al.
+  - Case studies in Chicago, New Orleans, and Maricopa County AZ. Shows the biases that predictive policing can play into and reinforce.
+  
+- An Example Predictive Policing Model
+  - With the caveats of above, we can explore an example model to understand some statistical methods.
+  - Example workflow: Using 311 Abandoned Car Data, transforming to KDE (kernel density) features, feature engineering to note abandoned cars (counts, KNN, LISA, and distance to hot spots), count regression models (Poisson, etc.), spatial cross validation, Analysis
+  
+- Some notes on stats:
+  - Recall: Global Moran's I (-1 < 0 < 1) - Positive I (Similar Values Cluster), Negative I (Dissimilar Values Adjacent - think of the Halloween decor example), Zero (Random Spatial Cluster)
+  - LISA (local Moran's): Every location i, a local statistic (will have I stat, p-value, and Z score)
+  - We need count regression models, because linear regression allows -inf to +inf and everything in between.
+  - Crime count distributions are also right skewed, a lot of zeros, discrete, and variance > mean (overdispersion is common)
+  - Poisson comes in! Every outcome is on a linear log scale (so positive)
+    - Each beta coeff is a change in log(expected count) per unit increase in 𝑋1
+    - But poisson assumes variance = mean. Reality with some data (crime data included) is that variance > mean
+    - Can check dispersion in R. If ~1, Poisson is fine; > 1, overdispersion (common); >2-3, serious overdispersion -> use negative bionomial.
+    
+  - Model Diagnostics for Count Models:
+    - Dispersion (noted above)
+    - Deviance Residuals (roughly normal)
+    - Pearson Residuals (check for outliers)
+    - Cook's distance (influential observations)
+    - Predicted vs Observed (visual check, AIC, etc)
+    
+  - Spatial Cross Validation (a special case of Leave One-out Cross Validation)
+    - Motivation is spatial leakage, model learning from neighbors of the test set (nearby observations are related). Traditional CV results in overly optimistic performance estimates.
+    - Spatial CV
+  - Kernel Density: Rasterizing the map, seeing how many points in the grid sections, but giving weight to where there are more points (think of a cone shape above the grid - bandwidth! Has to be in same unit as layers)
+  
+## Coding Techniques/Technical Notes
+- 
+  
+## Questions & Challenges
+- 
+
+## Connections to Policy
+- 
+
+## Reflection
+- 

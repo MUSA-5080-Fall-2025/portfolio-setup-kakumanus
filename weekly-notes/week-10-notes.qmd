@@ -1,0 +1,133 @@
+---
+title: "Week 10 Notes"
+date: "2025-11-10"
+---
+
+## Key Concepts Learned + Notes
+- Using the case study of Recidivism. This is a binary outcome and needs a different modeling approach.
+- Logistic Regression
+  - Recall that the function doesn't give you a 0 or 1, it gives you the probability of the outcome. 
+  - A lot of applications (health care risk assessments, loan defaults, blight prediction, etc)
+  - We work with log-odds (logit) = ln(p/(1-p)) i.e this is the log of the odds
+  - Coefficients of this function are log-odds like in linear regression, but we interpret as odds ratios when exponentiated $e^\beta$
+    - OR less than 1, predictor decreases odds of an outcome. And vice-versa
+  - We need to choose a threshold! Remember this returns a probability of a 0 or 1. What is acceptable? You must decide based on context, costs vs benefits, etc.
+  - Can result in 4 outcomes (True Positive, True Negative, False Positive (Type I Error), False Negative (Type II Error))
+- ROC Curve (Reciever Operating Curve)
+  - False Positive on X, True Positive on Y (Sensitivity or Recall).
+  - Area under the curve (AUC) should be bigger! 1:1 line is the no-skill line created from random guessing
+  - You want the logistic ROC curve to be above the 1:1 no-skill line.
+  - But remember, optimization isn't everything! You might end up picking something with highest TP regardless of FP
+- Misleading nature of Accuracy! You want to pay attention to the Specificity and Sensitivity too.
+  
+## Coding Techniques/Technical Notes
+- Fitting the logistic model
+  - use glm() (generalized linear model), and use family="binomial" (specifies that we want logistic)
+  
+## Disease Testing Exercise - Student Worksheet
+
+## Your Patient Information
+
+**Patient ID:** 021
+
+**Truth (Red dot?):** ⃝x YES (has disease)   ⃝ NO (no disease)
+
+**Model Prediction (Probability):** 0.40
+
+**Deadly Variant? (Star):** ⃝x YES   ⃝ NO
+
+---
+
+## Round 1: Threshold = 0.50
+
+### Step 1: Your Classification
+
+**Decision rule:** If probability ≥ 0.50 → QUARANTINE
+
+**Where should you go?**
+⃝ Quarantine Table  
+⃝ Stay at regular table
+
+### Step 2: What Type of Case Are You?
+
+Based on where you went and your truth:
+
+⃝ **True Positive (TP)** - Correctly quarantined (have disease, high prob)  
+⃝ **False Positive (FP)** - Incorrectly quarantined (no disease, high prob)  
+⃝ **True Negative (TN)** - Correctly not quarantined (no disease, low prob)  
+⃝ **False Negative (FN)** - Incorrectly not quarantined (have disease, low prob)
+
+### Step 3: Class-wide Results
+
+Work with your table to count:
+
+```
+           Predicted Positive   Predicted Negative
+           (Quarantined)       (Not Quarantined)
+
+Actually 
+Positive   TP = __12____         FN = __7____
+(Red Dot)
+
+Actually
+Negative   FP = __5____         TN = __13____
+(No Dot)
+```
+
+### Step 4: Calculate Metrics
+
+**Sensitivity (True Positive Rate):**
+$$\text{Sensitivity} = \frac{TP}{TP + FN} = \frac{12}{12 + 7} = 0.632$$
+
+*Interpretation:* What % of actually sick people did we catch? ~63%
+
+**Specificity (True Negative Rate):**
+$$\text{Specificity} = \frac{TN}{TN + FP} = \frac{13}{13 + 5} = 0.722$$
+
+*Interpretation:* What % of healthy people did we correctly not quarantine? ~72%
+
+**Precision (Positive Predictive Value):**
+$$\text{Precision} = \frac{TP}{TP + FP} = \frac{12}{12 + 5} = 0.705$$
+
+*Interpretation:* Of those quarantined, what % actually had disease? ~70%
+
+**Accuracy:**
+$$\text{Accuracy} = \frac{TP + TN}{\text{Total}} = \frac{12 + 13}{37} = 0.676$$
+
+*Interpretation:* What % did we classify correctly overall? ~67%
+
+---
+
+## Round 2: Threshold = 0.30
+
+### Your Classification
+
+**Decision rule:** If probability ≥ 0.30 → QUARANTINE
+
+**Where should you go?**
+⃝ Quarantine Table  
+⃝ Stay at regular table
+
+**Did your classification change from Round 1?** ⃝ YES  ⃝ NO
+
+### Class-wide Results
+
+```
+           Predicted Positive   Predicted Negative
+
+Actually 
+Positive   TP = __19____         FN = __2____
+
+Actually
+Negative   FP = __10___         TN = __7____
+```
+
+### Calculate Metrics
+
+**Sensitivity:** 95% ↑ 
+
+**Specificity:** 41% ↓
+
+**Precision:** ~66%
+
+**Accuracy:** 70%
