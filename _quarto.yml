@@ -24,6 +24,10 @@ website:
             text: Week 6
           - href: weekly-notes/week-07-notes.html
             text: Week 7
+          - href: weekly-notes/week-09-notes.html
+            text: Week 9
+          - href: weekly-notes/week-10-notes.html
+            text: Week 10
       - text: Assignments
         menu:
           - href: assignments/assignment_1/assignment1.html

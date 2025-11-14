@@ -34,18 +34,6 @@ execute:
 
 Your analysis should identify counties that should be priorities for healthcare investment and policy intervention.
 
-### Required Analysis Steps
-
-Complete the following analysis, documenting each step with code and brief explanations:
-
-#### Step 1: Data Collection (5 points)
-
-Load the required spatial data:
-- Pennsylvania county boundaries
-- Pennsylvania hospitals (from lecture data)
-- Pennsylvania census tracts
-
-**Your Task:**
 ```{r}
 library(tidycensus)
 library(tidyverse)
@@ -85,14 +73,6 @@ cat("census_tracts CRS:", st_crs(census_tracts)$input, " EPSG:", st_crs(hospital
 
 #### Step 2: Get Demographic Data 
 
-Use `tidycensus` to download tract-level demographic data for Pennsylvania.
-
-**Required variables:**
-- Total population
-- Median household income
-- Population 65 years and over (you may need to sum multiple age categories)
-
-**Your Task:**
 ```{r}
 
 # Determining what variables are needed for >= 65 years:
@@ -162,7 +142,6 @@ Identify census tracts with vulnerable populations based on TWO criteria:
 1. Low median household income (choose an appropriate threshold)
 2. Significant elderly population (choose an appropriate threshold)
 
-**Your Task:**
 ```{r}
 tracts_with_data <- tracts_with_data %>%
   mutate(pct_65_plus = (pop_65_plus / total_popE) * 100)
@@ -207,7 +186,6 @@ pct_vulnerable_tracts <- n_vulnerable_tracts / nrow(tracts_with_data) * 100
 
 For each vulnerable tract, calculate the distance to the nearest hospital.
 
-**Your Task:**
 ```{r}
 # Transform to appropriate projected CRS
 pa_projection <- 3365 # NAD83 / Pennsylvania South
@@ -265,7 +243,6 @@ tracts_with_data %>%
 
 Define "underserved" as vulnerable tracts that are more than 15 miles from the nearest hospital.
 
-**Your Task:**
 ```{r}
 tracts_with_data <- tracts_with_data %>%
   mutate(
@@ -304,7 +281,6 @@ tracts_with_data %>%
 
 Use spatial joins and aggregation to calculate county-level statistics about vulnerable populations and hospital access.
 
-**Your Task:**
 ```{r}
 # Spatial join tracts to counties
 tracts_by_county <- tracts_with_data %>% 
@@ -372,9 +348,6 @@ tracts_by_county %>%
 
 #### Step 7: Create Summary Table 
 
-Create a professional table showing the top 10 priority counties for healthcare investment.
-
-**Your Task:**
 ```{r}
 tracts_by_county %>%
   st_drop_geometry() %>%
@@ -396,24 +369,12 @@ tracts_by_county %>%
 ```
 *Note: Vulnerable tracts are defined as those in the bottom 25% for median household income and top 25% for percentage of population 65+. Underserved tracts are vulnerable tracts located more than 15 miles from the nearest hospital.*
 
-**Requirements:**
-- Use `knitr::kable()` or similar for formatting
-- Include descriptive column names
-- Format numbers appropriately (commas for population, percentages, etc.)
-- Add an informative caption
-- Sort by priority (you decide the metric)
-
 ---
 
 ## Part 2: Comprehensive Visualization 
 
-Using the skills from Week 3 (Data Visualization), create publication-quality maps and charts.
-
 ### Map 1: County-Level Choropleth 
 
-Create a choropleth map showing healthcare access challenges at the county level.
-
-**Your Task:**
 ```{r}
 county_map_data <- pa_counties %>%
   left_join(county_stats, by = "COUNTY_NAM")
@@ -451,21 +412,12 @@ ggplot() +
 
 ```
 
-**Requirements:**
-- Fill counties by percentage of vulnerable tracts that are underserved
-- Include hospital locations as points
-- Use an appropriate color scheme
-- Include clear title, subtitle, and caption
-- Use `theme_void()` or similar clean theme
-- Add a legend with formatted labels
-
 ---
 
 ### Map 2: Detailed Vulnerability Map 
 
 Create a map highlighting underserved vulnerable tracts.
 
-**Your Task:**
 ```{r}
 ggplot() +
   geom_sf(data = tracts_with_data, 
@@ -503,20 +455,12 @@ ggplot() +
 
 ```
 
-**Requirements:**
-- Show underserved vulnerable tracts in a contrasting color
-- Include county boundaries for context
-- Show hospital locations
-- Use appropriate visual hierarchy (what should stand out?)
-- Include informative title and subtitle
-
 ---
 
 ### Chart: Distribution Analysis
 
 Create a visualization showing the distribution of distances to hospitals for vulnerable populations.
 
-**Your Task:**
 ```{r}
 # Create distribution visualization
 tracts_with_data %>%
@@ -535,19 +479,6 @@ tracts_with_data %>%
 
 
 ```
-
-**Suggested chart types:**
-- Histogram or density plot of distances
-- Box plot comparing distances across regions
-- Bar chart of underserved tracts by county
-- Scatter plot of distance vs. vulnerable population size
-
-**Requirements:**
-- Clear axes labels with units
-- Appropriate title
-- Professional formatting
-- Brief interpretation (1-2 sentences as a caption or in text)
-
 ---
 
 ## Part 3: Bring Your Own Data Analysis 
@@ -576,13 +507,6 @@ Choose your own additional spatial dataset and conduct a supplementary analysis.
 - **TIGER/Line (via tigris):** Geographic boundaries
 
 ### Your Analysis
-
-**Your Task:**
-
-1. **Find and load additional data**
-   - Document your data source
-   - Check and standardize the CRS
-   - Provide basic summary statistics
 
 ```{r}
 polling_places <- st_read("./data/polling_places.geojson", quiet = TRUE)
@@ -663,15 +587,6 @@ Note: Using an average walk speed of ~2.5mph, this would be distances of 0.2, 0.
 
 Use at least TWO spatial operations to answer your research question.
 
-**Required operations (choose 2+):**
-- Buffers
-- Spatial joins
-- Spatial filtering with predicates
-- Distance calculations
-- Intersections or unions
-- Point-in-polygon aggregation
-
-**Your Task:**
 ```{r}
 # Your spatial analysis
 
@@ -759,17 +674,7 @@ map_5min + map_10min + map_15min +
   )
 
 ```
-
-
-**Analysis requirements:**
-- Clear code comments explaining each step
-- Appropriate CRS transformations
-- Summary statistics or counts
-- At least one map showing your findings
-- Brief interpretation of results (3-5 sentences)
-
 **Your interpretation:**
-
 
 It seems that there's more interesting analysis that can occur for polling stations more than 5 minutes walk from a bus stop. They seem mostly concentrated along the periphery of the city. Future analysis can be done on the condition of streets around these polling stations (a 5 minute walk across a quaint neighborhood is much easier than a 5 minute walk across/adjacent a busy highway). This can be combined with the accessibility information of polling stations, whether they're in vulnerable census tracts, or near other forms of transit (SEPTA Metro, Trolleys, IndeGo bikeshare, bike lanes, etc.)
 
