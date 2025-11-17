@@ -38,6 +38,8 @@ website:
             text: Assignment 3 Technical Appendix (Group Project)
           - href: assignments/assignment_3/midterm_presentation.html
             text: Assignment 3 Presentation (Group Project)
+          - href: assignments/assignment_4/Kakumanu_Sujan_Assignment_4.html
+            text: Assignment 4
       - text: Labs
         menu:
           - href: labs/lab0/scripts/lab0_template.html

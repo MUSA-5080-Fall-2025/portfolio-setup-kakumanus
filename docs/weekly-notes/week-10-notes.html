@@ -158,6 +158,14 @@ window.Quarto = {
     <a class="dropdown-item" href="../weekly-notes/week-07-notes.html">
  <span class="dropdown-text">Week 7</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-09-notes.html">
+ <span class="dropdown-text">Week 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weekly-notes/week-10-notes.html">
+ <span class="dropdown-text">Week 10</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -278,6 +286,14 @@ window.Quarto = {
 <li>We need to choose a threshold! Remember this returns a probability of a 0 or 1. What is acceptable? You must decide based on context, costs vs benefits, etc.</li>
 <li>Can result in 4 outcomes (True Positive, True Negative, False Positive (Type I Error), False Negative (Type II Error))</li>
 </ul></li>
+<li>ROC Curve (Reciever Operating Curve)
+<ul>
+<li>False Positive on X, True Positive on Y (Sensitivity or Recall).</li>
+<li>Area under the curve (AUC) should be bigger! 1:1 line is the no-skill line created from random guessing</li>
+<li>You want the logistic ROC curve to be above the 1:1 no-skill line.</li>
+<li>But remember, optimization isn’t everything! You might end up picking something with highest TP regardless of FP</li>
+</ul></li>
+<li>Misleading nature of Accuracy! You want to pay attention to the Specificity and Sensitivity too.</li>
 </ul>
 </section>
 <section id="coding-techniquestechnical-notes" class="level2">
